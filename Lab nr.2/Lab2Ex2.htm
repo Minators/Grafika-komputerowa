@@ -63,7 +63,7 @@
                     document.addEventListener("mouseup", doMouseUp, false);
                 }
                 colorChoice = Number(document.getElementById("colorChoice").value);
-                figureChoice = document.querySelector("figureChoice").value.toString().toLowerCase();
+                figureChoice = document.getElementById("figureChoice").value.toString().toLowerCase();
             }
 
             function doMouseMove(evt) {
@@ -109,11 +109,11 @@
                         graphics.fillRect(x - 20, y - 20, figureSize, figureSize);
                         graphics.strokeRect(x - 20, y - 20, figureSize, figureSize);
                         break;
-                    case 'dodecagon':
+                    case 'tridecagon':
                         graphics.beginPath();
-                        graphics.strokeStyle= "black";
-                        for (let i = 0; i < 12; i++) {
-                            const ang = (i / 12) * Math.PI * 2 -Math.PI / 2;
+                        graphics.strokeStyle = "black";
+                        for (let i = 0; i < 13; i++) {
+                            const ang = (i / 13) * Math.PI * 2 - Math.PI / 2;
                             graphics.lineTo(
                                 Math.cos(ang) * figureSize + x,
                                 Math.sin(ang) * figureSize + y
@@ -123,6 +123,7 @@
                         graphics.fill();
                         graphics.stroke();
                         break;
+
                 }
 
                 prevX = x;
@@ -135,7 +136,7 @@
                 }
                 dragging = false;
                 document.removeEventListener("mousemove", doMouseMove, false);
-                document.removeEventListener("mouseup", doMouseMove, false);
+                document.removeEventListener("mouseup", doMouseUp, false);
             }
 
             canvas.addEventListener("mousedown", doMouseDown, false);
@@ -220,7 +221,7 @@
             graphics.fillStyle = "white";
             graphics.fillRect(0, 0, canvas.width, canvas.height);
 
-            var clearBtn = document.querySelector("clearButton");
+            var clearBtn = document.getElementById("clearButton");
             clearBtn.addEventListener("click", () => {
                 graphics.clearRect(0, 0, 800, 600);
             });
@@ -238,7 +239,7 @@
         <b>Figura:</b>
         <select id="figureChoice">
             <option value="rectangle">Kwadrat</option>
-            <option value="dodecagon">Dwunastokąt</option>
+            <option value="tridecagon">Trzynastokąt</option>
         </select>
     </p>
     <p>
