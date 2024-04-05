@@ -15,15 +15,21 @@
     let currentShape = 'spiral';
     
     function spiral() {
-        glColor3f(1, 0, 0);
-        glBegin(GL_LINE_STRIP);
-        for (let i = 0; i <= 9 * Math.PI; i += 0.1) {
-            const x = Math.cos(i) * i * 0.02;
-            const y = Math.sin(i) * i * 0.02;
-            glVertex3f(x, y, i * 0.01);
-        }
-        glEnd();
+    glColor3f(1, 0, 0);
+    glBegin(GL_LINE_STRIP);
+    const numCoils = 9;  
+    const numPointsPerCoil = 100; 
+    const coilRadius = 0.1; 
+    const coilSpacing = 0.1; 
+    
+    for (let i = 0; i <= numCoils * 2 * Math.PI; i += (2 * Math.PI) / numPointsPerCoil) {
+        const x = coilRadius * Math.cos(i); 
+        const y = coilRadius * Math.sin(i); 
+        const z = (i / (2 * Math.PI)) * coilSpacing; 
+        glVertex3f(x, y, z);
     }
+    glEnd();
+}
     
     function cone(height) {  
     const angle = (2 * Math.PI) / 13;
