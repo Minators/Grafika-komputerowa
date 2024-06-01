@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horse Knight</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+    // Scene setup
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x000000); // Black background
+
+    // Camera setup
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(0, 2, 5);
+
+    // Renderer setup
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    // Add lighting
+    const light = new THREE.PointLight(0xffffff, 1, 100);
+    light.position.set(5, 5, 5);
+    scene.add(light);
+
+    // Create horse knight
+    const horseKnight = new THREE.Group();
+
+    // Base (Upside-down Cylinder with narrower top)
+    const baseGeometry = new THREE.CylinderGeometry(0.5, 0.4, 0.2, 32); 
+    baseGeometry.translate(0, 0.4, 0);
+    const baseMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const base = new THREE.Mesh(baseGeometry, baseMaterial);
+    horseKnight.add(base);
+
+    // Base (Upside-down Cylinder with narrower top)
+    const baseGeometry2 = new THREE.CylinderGeometry(0.6, 0.4, 0.2, 32);
+    baseGeometry2.rotateX(Math.PI); // Obróć cylindra do góry nogami
+    baseGeometry2.translate(0, 0.25, 0);
+    const base2 = new THREE.Mesh(baseGeometry2, baseMaterial);
+    horseKnight.add(base2);
+
+    // Base (Upside-down Cylinder with narrower top)
+    const baseGeometry3 = new THREE.CylinderGeometry(0.5, 0.4, 0.2, 32);
+    baseGeometry3.rotateX(Math.PI); // Obróć cylindra do góry nogami
+    baseGeometry3.translate(0, 0.7, 0);
+    const base3 = new THREE.Mesh(baseGeometry3, baseMaterial);
+    horseKnight.add(base3);
+
+    // Add a body
+    const bodyGeometry = new THREE.CylinderGeometry(0.45, 0.2, 0.6, 32); // RadiusTop, RadiusBottom, Height, RadialSegments
+    const bodyMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+    body.position.y = 1.1;
+    horseKnight.add(body);
+
+    // Add a body 2
+    const body2Geometry = new THREE.CylinderGeometry(0.635, 0.6, 0.2, 32);
+    const body2Material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const body2 = new THREE.Mesh(body2Geometry, body2Material);
+    body2.position.y = 0.0;
+    horseKnight.add(body2);
+
+    // Add a body 3
+    const body3Geometry = new THREE.CylinderGeometry(0.525, 0.525, 0.05, 32);
+    const body3Material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const body3 = new THREE.Mesh(body3Geometry, body3Material);
+    body3.position.y = 0.55;
+    horseKnight.add(body3);
+
+    // Add a body 4
+    const body4Geometry = new THREE.CylinderGeometry(0.5, 0.3, 0.4, 32);
+    const body4Material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const body4 = new THREE.Mesh(body4Geometry, body4Material);
+    body4.position.set(0, 1.6, 0.15);
+    horseKnight.add(body4);
+
+    // Add a body 5
+    const body5Geometry = new THREE.CylinderGeometry(0.4, 0.4, 0.075, 32);
+    const body5Material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const body5 = new THREE.Mesh(body5Geometry, body5Material);
+    body5.position.y = 0.8;
+    horseKnight.add(body5);
+
+    // Add a body 6
+    const body6Geometry = new THREE.CylinderGeometry(0.45, 0.3, 0.2, 32);
+    const body6Material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const body6 = new THREE.Mesh(body6Geometry, body6Material);
+    body6.position.set(0, 0.65, -0.25);
+    horseKnight.add(body6);
+
+    // Add a body 7
+    const body7Geometry = new THREE.CylinderGeometry(0.1, 0.45, 0.9, 32);
+    const body7Material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const body7 = new THREE.Mesh(body7Geometry, body7Material);
+    body7.position.set(0, 1.2, -0.25);
+    horseKnight.add(body7);
+
+    // Add a body 8
+    const body8Geometry = new THREE.CylinderGeometry(0.1, 0.2, 0.9, 32);
+    const body8Material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const body8 = new THREE.Mesh(body8Geometry, body8Material);
+    body8.position.set(0, 1.4, 0);
+    horseKnight.add(body8);
+    
+    // Add a body 9
+    const body9Geometry = new THREE.CylinderGeometry(0.2, 0.45, 0.6, 32);
+    const body9Material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const body9 = new THREE.Mesh(body9Geometry, body9Material);
+    body9.position.set(0, 1.7, 0);
+    horseKnight.add(body9);
+    
+    // Add a body 10
+    const body10Geometry = new THREE.CylinderGeometry(0.45, 0.45, 0.035, 32);
+    const body10Material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const body10 = new THREE.Mesh(body10Geometry, body10Material);
+    body10.position.set(0, 0.76, -0.25);
+    horseKnight.add(body10);
+
+    // Add a left ear
+    const LeftEarGeometry = new THREE.CylinderGeometry(0.01, 0.1, 0.4, 32);
+    const LeftEarMaterial = new THREE.MeshBasicMaterial({ color: 0xFFF5E6 });
+    const LeftEar = new THREE.Mesh(LeftEarGeometry, LeftEarMaterial);
+    LeftEar.rotation.x = Math.PI / 10;
+    LeftEar.position.set(0.25, 2.75, 0.3);
+    horseKnight.add(LeftEar);
+
+    // Add a right ear
+    const RightEarGeometry = new THREE.CylinderGeometry(0.01, 0.1, 0.4, 32);
+    const RightEarMaterial = new THREE.MeshBasicMaterial({ color: 0xFFF5E6 });
+    const RightEar = new THREE.Mesh(RightEarGeometry, RightEarMaterial);
+    RightEar.rotation.x = Math.PI / 10;
+    RightEar.position.set(-0.25, 2.75, 0.3);
+    horseKnight.add(RightEar);
+
+    // Add a mane 
+    const ManeGeometry = new THREE.CylinderGeometry(0.5, 0.5, 0.1, 32);
+    const ManeMaterial = new THREE.MeshBasicMaterial({ color: 0xFFF5E6 });
+    const Mane = new THREE.Mesh(ManeGeometry, ManeMaterial);
+    Mane.rotation.x = Math.PI / 2;
+    Mane.rotation.z = Math.PI / 2;
+    Mane.position.set(0, 2.3, 0.3);
+    horseKnight.add(Mane);
+
+    // Add a mane 2
+    const Mane2Geometry = new THREE.CylinderGeometry(0.5, 0.5, 0.1, 32);
+    const Mane2Material = new THREE.MeshBasicMaterial({ color: 0xFFF5E6 });
+    const Mane2 = new THREE.Mesh(Mane2Geometry, Mane2Material);
+    Mane2.rotation.x = Math.PI / 2;
+    Mane2.rotation.z = Math.PI / 2;
+    Mane2.position.set(0, 2.2, 0.33);
+    horseKnight.add(Mane2);
+
+    // Add a mane 3
+    const Mane3Geometry = new THREE.CylinderGeometry(0.5, 0.5, 0.1, 32);
+    const Mane3Material = new THREE.MeshBasicMaterial({ color: 0xFFF5E6 });
+    const Mane3 = new THREE.Mesh(Mane3Geometry, Mane3Material);
+    Mane3.rotation.x = Math.PI / 2;
+    Mane3.rotation.z = Math.PI / 2;
+    Mane3.position.set(0, 2.1, 0.34);
+    horseKnight.add(Mane3);
+
+    // Add a mane 4
+    const Mane4Geometry = new THREE.CylinderGeometry(0.5, 0.5, 0.1, 32);
+    const Mane4Material = new THREE.MeshBasicMaterial({ color: 0xFFF5E6 });
+    const Mane4 = new THREE.Mesh(Mane4Geometry, Mane4Material);
+    Mane4.rotation.x = Math.PI / 2;
+    Mane4.rotation.z = Math.PI / 2;
+    Mane4.position.set(0, 2, 0.33);
+    horseKnight.add(Mane4);
+
+    // Add a mane 5
+    const Mane5Geometry = new THREE.CylinderGeometry(0.5, 0.5, 0.1, 32);
+    const Mane5Material = new THREE.MeshBasicMaterial({ color: 0xFFF5E6 });
+    const Mane5 = new THREE.Mesh(Mane5Geometry, Mane5Material);
+    Mane5.rotation.x = Math.PI / 2;
+    Mane5.rotation.z = Math.PI / 2;
+    Mane5.position.set(0, 1.9, 0.25);
+    horseKnight.add(Mane5);
+
+    // Add a mane 6
+    const Mane6Geometry = new THREE.CylinderGeometry(0.5, 0.5, 0.1, 32);
+    const Mane6Material = new THREE.MeshBasicMaterial({ color: 0xFFF5E6 });
+    const Mane6 = new THREE.Mesh(Mane6Geometry, Mane6Material);
+    Mane6.rotation.x = Math.PI / 2;
+    Mane6.rotation.z = Math.PI / 2;
+    Mane6.position.set(0, 2.3, 0.25);
+    horseKnight.add(Mane6);
+
+    // Add a mane 7
+    const Mane7Geometry = new THREE.CylinderGeometry(0.45, 0.45, 0.1, 32);
+    const Mane7Material = new THREE.MeshBasicMaterial({ color: 0xFFF5E6 });
+    const Mane7 = new THREE.Mesh(Mane7Geometry, Mane7Material);
+    Mane7.rotation.x = Math.PI / 2;
+    Mane7.rotation.z = Math.PI / 2;
+    Mane7.position.set(0, 1.6, 0.15);
+    horseKnight.add(Mane7);
+
+    // Add a mane 8
+    const Mane8Geometry = new THREE.CylinderGeometry(0.4, 0.4, 0.1, 32);
+    const Mane8Material = new THREE.MeshBasicMaterial({ color: 0xFFF5E6 });
+    const Mane8 = new THREE.Mesh(Mane8Geometry, Mane8Material);
+    Mane8.rotation.x = Math.PI / 2;
+    Mane8.rotation.z = Math.PI / 2;
+    Mane8.position.set(0, 1.3, 0.075);
+    horseKnight.add(Mane8);
+
+    // Add a mane 9
+    const Mane9Geometry = new THREE.CylinderGeometry(0.4, 0.4, 0.1, 32);
+    const Mane9Material = new THREE.MeshBasicMaterial({ color: 0xFFF5E6 });
+    const Mane9 = new THREE.Mesh(Mane9Geometry, Mane9Material);
+    Mane9.rotation.x = Math.PI / 2;
+    Mane9.rotation.z = Math.PI / 2;
+    Mane9.position.set(0, 1, 0.05);
+    horseKnight.add(Mane9);
+
+    // Add a mane 10
+    const Mane10Geometry = new THREE.CylinderGeometry(0.4, 0.4, 0.1, 32);
+    const Mane10Material = new THREE.MeshBasicMaterial({ color: 0xFFF5E6 });
+    const Mane10 = new THREE.Mesh(Mane10Geometry, Mane10Material);
+    Mane10.rotation.x = Math.PI / 2;
+    Mane10.rotation.z = Math.PI / 2;
+    Mane10.position.set(0, 0.8, 0.1);
+    horseKnight.add(Mane10);
+
+    // Add a mane 11
+    const Mane11Geometry = new THREE.CylinderGeometry(0.4, 0.4, 0.1, 32);
+    const Mane11Material = new THREE.MeshBasicMaterial({ color: 0xFFF5E6 });
+    const Mane11 = new THREE.Mesh(Mane11Geometry, Mane11Material);
+    Mane11.rotation.x = Math.PI / 2;
+    Mane11.rotation.z = Math.PI / 2;
+    Mane11.position.set(0, 0.6, 0.1);
+    horseKnight.add(Mane11);
+
+    // Add a mane 12
+    const Mane12Geometry = new THREE.CylinderGeometry(0.55, 0.55, 0.1, 32);
+    const Mane12Material = new THREE.MeshBasicMaterial({ color: 0xFFF5E6 });
+    const Mane12 = new THREE.Mesh(Mane12Geometry, Mane12Material);
+    Mane12.rotation.x = Math.PI / 2;
+    Mane12.rotation.z = Math.PI / 2;
+    Mane12.position.set(0, 2.2, 0.4);
+    horseKnight.add(Mane12);
+
+    // Add a nose
+    const NoseGeometry = new THREE.CylinderGeometry(0.4, 0.3, 1, 32);
+    const NoseMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const Nose = new THREE.Mesh(NoseGeometry, NoseMaterial);
+    Nose.rotation.x = Math.PI / 2.6; // Rotate cylinder horizontally
+    Nose.position.set(0, 2.1, -0.4);
+    horseKnight.add(Nose);
+
+    // Add a neck
+    const NeckGeometry = new THREE.CylinderGeometry(0.3, 0.4, 0.5, 32);
+    const NeckMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const Neck = new THREE.Mesh(NeckGeometry, NeckMaterial);
+    Neck.position.y = 1;
+    horseKnight.add(Neck);
+
+    // Add a head
+    const HeadGeometry = new THREE.SphereGeometry(0.6, 32, 32);
+    const HeadMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const Head = new THREE.Mesh(HeadGeometry, HeadMaterial);
+    Head.position.set(0, 2.1, 0.175);
+    horseKnight.add(Head);
+
+    // Add a mouth
+    const MouthGeometry = new THREE.SphereGeometry(0.3, 32, 32);
+    const MouthMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const Mouth = new THREE.Mesh(MouthGeometry, MouthMaterial);
+    Mouth.position.set(0, 1.95, -0.8);
+    horseKnight.add(Mouth);
+
+    // Add a mouth 2
+    const Mouth2Geometry = new THREE.SphereGeometry(0.35, 32, 32);
+    const Mouth2Material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const Mouth2 = new THREE.Mesh(Mouth2Geometry, Mouth2Material);
+    Mouth2.position.set(0, 1.9, -0.75);
+    horseKnight.add(Mouth2);
+
+    // Add a left eye
+    const LeftEyeGeometry = new THREE.SphereGeometry(0.1, 32, 32);
+    const LeftEyeMaterial = new THREE.MeshBasicMaterial({ color: 0xFFF5E6 });
+    const LeftEye = new THREE.Mesh(LeftEyeGeometry, LeftEyeMaterial);
+    LeftEye.position.set(0.3, 2.35, -0.2);
+    horseKnight.add(LeftEye);
+
+    // Add a right eye
+    const RightEyeGeometry = new THREE.SphereGeometry(0.1, 32, 32);
+    const RightEyeMaterial = new THREE.MeshBasicMaterial({ color: 0xFFF5E6 });
+    const RightEye = new THREE.Mesh(RightEyeGeometry, RightEyeMaterial);
+    RightEye.position.set(-0.3, 2.35, -0.2);
+    horseKnight.add(RightEye);
+
+    scene.add(horseKnight);
+
+    // Animation loop
+    function animate() {
+        requestAnimationFrame(animate);
+        horseKnight.rotation.y += 0.01; // Rotate around the vertical axis
+        renderer.render(scene, camera);
+    }
+    animate();
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+</script>
+</body>
+</html>
